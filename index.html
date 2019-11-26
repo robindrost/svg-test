@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #bg {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        .content-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .path {
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: dash 4s linear forwards;
+        }
+
+        .path2 {
+            animation: dash2 8s linear forwards;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes dash {
+            from {
+                stroke-dashoffset: 2000;
+            }
+
+            to {
+                stroke-dashoffset: 1415;
+            }
+        }
+
+        @keyframes dash2 {
+            from {
+                stroke-dashoffset: 1415;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <video autoplay muted loop id="bg">
+        <source
+            src="https://storage.googleapis.com/coverr-main/mp4%2Fcoverr-lago-di-braies-1571919374360.mp4?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=coverr-183014%40appspot.gserviceaccount.com%2F20191126%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20191126T201713Z&X-Goog-Expires=301&X-Goog-SignedHeaders=host&X-Goog-Signature=442381b2187362e003fa4081f771cb3548d24df62e120a3e12e738fc96984b25a58708953b139364efe103973e9835cb5d72018ddc68f1e5bee70705fe3e6af52ff0205e0a0418d4b45daf7a5e067e012e0c58b2ab22bb7b28022e0a00cc3de8743d94333c730cf668bc103e4672d9405753c1d30415c3d829548c9a6dc353ccf0c1fd59eaea8acfe716f09d73e41510414b4c2c5fcf98ac1409a8633dc32b9fc6350afdcc1e935e814b6a2b3fd5b9d8f13d711618f782693f59c1e0161ed52fa9f013823c65504bb5b61698e63279349a4f57aba39ef1f46b95967b12cf7f13433aeaee1a8821f9295781091835b69b9a3a43a0404b4b394e827f9f3b15965c"
+            type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="content-wrapper">
+        <svg width="100%" viewBox="0 0 795 176" fill="none" preserveAspectRatio="xMinYMin"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="path"
+                d="M2 79L65.5 92.5L85 143L106 51L130 124L152 79L201 174L257 29L288 156L371 2L427 166L458 105L495 150L545 2L593 124L623 79H796"
+                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <circle class="hidden first-toggle animated" cx="255.5" cy="32.5" r="13" fill="#D73535" stroke="white"
+                stroke-width="2" />
+        </svg>
+    </div>
+
+    <script>
+        const path = document.querySelector('.path');
+        const firstToggle = document.querySelector('.first-toggle');
+
+        firstToggle.addEventListener('click', () => {
+            path.classList.add('path2');
+        });
+
+        path.addEventListener('animationend', () => {
+            firstToggle.classList.add('fadeIn');
+            firstToggle.classList.remove('hidden');
+        });
+
+    </script>
+</body>
+
+</html>
